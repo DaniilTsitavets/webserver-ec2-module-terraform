@@ -10,6 +10,7 @@ permissions:
 
 env:
   WORK_DIR: infrastructure
+  AWS_REGION: eu-north-1
 
 jobs:
   terraform-validate:
