@@ -1,0 +1,39 @@
+name: Validate Terraform
+
+on:
+  push:
+    branches: [ "main", "feature/**" ]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  WORK_DIR: infrastructure
+
+jobs:
+  terraform-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ${{ env.WORK_DIR }}
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ${{ env.WORK_DIR }}
+
+      - name: Terraform Format
+        run: terraform fmt -check
+        working-directory: ${{ env.WORK_DIR }}
+
+      - name: Terraform Plan
+        run: terraform plan -input=false
+        working-directory: ${{ env.WORK_DIR }}
