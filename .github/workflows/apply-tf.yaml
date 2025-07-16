@@ -2,15 +2,6 @@ name: Terraform Apply or Destroy
 
 on:
   workflow_dispatch:
-    inputs:
-      action:
-        description: 'Terraform Action (apply or destroy)'
-        required: true
-        default: 'apply'
-        type: choice
-        options:
-          - apply
-          - destroy
 
 env:
   WORK_DIR: infrastructure
@@ -38,10 +29,5 @@ jobs:
         working-directory: ${{ env.WORK_DIR }}
 
       - name: Terraform Action - Apply or Destroy
-        run: |
-          if [[ "${{ github.event.inputs.action }}" == "destroy" ]]; then
-            terraform destroy -auto-approve
-          else
-            terraform apply -auto-approve
-          fi
+        run: terraform apply -auto-approve
         working-directory: ${{ env.WORK_DIR }}
