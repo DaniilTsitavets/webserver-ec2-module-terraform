@@ -4,7 +4,8 @@
 resource "aws_instance" "http" {
   for_each      = var.http_instance_names
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  //TODO move back instance_type = "t3.micro"
+  instance_type = ".micro"
   key_name      = aws_key_pair.user_key.key_name
   vpc_security_group_ids = [
     aws_security_group.administration.id,
