@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  WORK_DIR: infrastructure
+  INFRA_DIR: infrastructure
   AWS_REGION: eu-north-1
   TESTS_DIR: test
 
@@ -29,11 +29,11 @@ jobs:
 
       - name: Terraform init
         run: terraform init
-        working-directory: ${{ WORK_DIR }}
+        working-directory: ${{ INFRA_DIR }}
 
       - name: Terraform apply
         run: terraform apply -auto-approve
-        working-directory: ${{ WORK_DIR }}
+        working-directory: ${{ INFRA_DIR }}
 
       - name: Install Go
         uses: actions/setup-go@v5

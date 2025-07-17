@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  WORK_DIR: infrastructure
+  INFRA_DIR: infrastructure
   AWS_REGION: eu-north-1
 
 jobs:
@@ -28,8 +28,8 @@ jobs:
 
       - name: Terraform init
         run: terraform init
-        working-directory: ${{ WORK_DIR }}
+        working-directory: ${{ INFRA_DIR }}
 
       - name: Terraform destroy
         run: terraform destroy -auto-approve
-        working-directory: ${{ WORK_DIR }}
+        working-directory: ${{ INFRA_DIR }}

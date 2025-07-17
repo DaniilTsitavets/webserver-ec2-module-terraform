@@ -33,29 +33,29 @@ jobs:
         with:
           #TODO probably delete soft_fail: true
           soft_fail: true
-          directory: ${{ env.WORK_DIR }}
+          directory: ${{ env.INFRA_DIR }}
 
       - name: Setup tflint
         uses: terraform-linters/setup-tflint@v4
 
       - name: Init tflint
-        run: tflint --init --chdir=${{ env.WORK_DIR }}
+        run: tflint --init --chdir=${{ env.INFRA_DIR }}
 
       - name: Run tflint
-        run: tflint --chdir=${{ env.WORK_DIR }}
+        run: tflint --chdir=${{ env.INFRA_DIR }}
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ${{ env.WORK_DIR }}
+        working-directory: ${{ env.INFRA_DIR }}
 
       - name: Terraform Format Check
         run: terraform fmt -check
-        working-directory: ${{ env.WORK_DIR }}
+        working-directory: ${{ env.INFRA_DIR }}
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ${{ env.WORK_DIR }}
+        working-directory: ${{ env.INFRA_DIR }}
 
       - name: Terraform Plan
         run: terraform plan -input=false
-        working-directory: ${{ env.WORK_DIR }}
+        working-directory: ${{ env.INFRA_DIR }}
