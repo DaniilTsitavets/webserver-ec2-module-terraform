@@ -38,6 +38,9 @@ jobs:
       - name: Setup tflint
         uses: terraform-linters/setup-tflint@v4
 
+      - name: Init tflint
+        run: tflint --init --chdir=${{ env.WORK_DIR }}
+
       - name: Run tflint
         run: tflint --chdir=${{ env.WORK_DIR }}
 
