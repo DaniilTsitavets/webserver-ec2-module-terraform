@@ -54,7 +54,3 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -input=false
         working-directory: ${{ env.WORK_DIR }}
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: ${{ env.WORK_DIR }}
