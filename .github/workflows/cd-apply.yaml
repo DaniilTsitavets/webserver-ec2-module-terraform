@@ -6,6 +6,7 @@ on:
 env:
   WORK_DIR: infrastructure
   AWS_REGION: eu-north-1
+  TESTS_DIR: test
 
 jobs:
   apply-infra:
@@ -34,4 +35,11 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ WORK_DIR }}
 
-#TODO add terratest job
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.11'
+
+      - name: Run terratest
+        run: go test -v .
+        with: ${{ env.TESTS_DIR }}
