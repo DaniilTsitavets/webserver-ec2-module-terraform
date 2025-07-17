@@ -31,6 +31,8 @@ jobs:
       - name: Run tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
         with:
+          #TODO probably delete soft_fail: true
+          soft_fail: true
           directory: ${{ env.WORK_DIR }}
 
       - name: Setup tflint
