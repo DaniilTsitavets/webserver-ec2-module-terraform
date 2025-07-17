@@ -6,7 +6,7 @@ on:
   pull_request:
 
 env:
-  WORK_DIR: infrastructure
+  INFRA_DIR: infrastructure
   AWS_REGION: eu-north-1
 
 jobs:
