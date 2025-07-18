@@ -95,7 +95,7 @@ resource "aws_security_group" "db" {
     from_port      = 3306
     to_port        = 3306
     protocol       = "tcp"
-    security_group = [aws_security_group.administration.id, aws_security_group.web.id]
+    security_groups = [aws_security_group.administration.id, aws_security_group.web.id]
 
   }
 
@@ -105,6 +105,6 @@ resource "aws_security_group" "db" {
     from_port      = 0
     to_port        = 0
     protocol       = "-1"
-    security_group = [aws_security_group.administration.id, aws_security_group.web.id]
+    security_groups = [aws_security_group.administration.id, aws_security_group.web.id]
   }
 }
