@@ -6,7 +6,7 @@ on:
 env:
   INFRA_DIR: infrastructure
   AWS_REGION: eu-north-1
-  TESTS_DIR: test
+  TESTS_DIR: infrastructure/test
 
 jobs:
   apply-infra:
