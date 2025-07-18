@@ -6,7 +6,7 @@ on:
 env:
   INFRA_DIR: infrastructure
   AWS_REGION: eu-north-1
-  TESTS_DIR: test
+  TESTS_DIR: infrastructure/test
 
 jobs:
   apply-infra:
@@ -29,11 +29,11 @@ jobs:
 
       - name: Terraform init
         run: terraform init
-        working-directory: ${{ INFRA_DIR }}
+        working-directory: ${{ env.INFRA_DIR }}
 
       - name: Terraform apply
         run: terraform apply -auto-approve
-        working-directory: ${{ INFRA_DIR }}
+        working-directory: ${{ env.INFRA_DIR }}
 
       - name: Install Go
         uses: actions/setup-go@v5
@@ -42,4 +42,4 @@ jobs:
 
       - name: Run terratest
         run: go test -v .
-        with: ${{ env.TESTS_DIR }}
+        working-directory: ${{ env.TESTS_DIR }}
