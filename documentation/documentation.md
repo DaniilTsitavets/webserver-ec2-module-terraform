@@ -1,8 +1,4 @@
-# Task 1: GitHub Actions Pipeline for Infrastructure Deployment
-
-## Overview
-
-This task implements a GitHub Actions pipeline to automate Terraform-based infrastructure deployment on AWS. The pipeline includes validation, formatting, planning, manual apply, and optional destroy.
+# Simple GitHub Actions Pipeline for Infrastructure Deployment
 
 ## How It Works
 
