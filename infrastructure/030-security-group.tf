@@ -91,20 +91,20 @@ resource "aws_security_group" "db" {
 
   # db port
   ingress {
-    description    = "Allow MySQL from internet (not secure!)"
-    from_port      = 3306
-    to_port        = 3306
-    protocol       = "tcp"
+    description     = "Allow MySQL from internet (not secure!)"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
     security_groups = [aws_security_group.administration.id, aws_security_group.web.id]
 
   }
 
   # Open access to public network
   egress {
-    description    = "Allow all egress"
-    from_port      = 0
-    to_port        = 0
-    protocol       = "-1"
+    description     = "Allow all egress"
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
     security_groups = [aws_security_group.administration.id, aws_security_group.web.id]
   }
 }
