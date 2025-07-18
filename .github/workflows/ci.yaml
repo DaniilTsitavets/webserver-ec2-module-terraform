@@ -41,6 +41,8 @@ jobs:
 
       - name: Run tflint
         run: tflint --chdir=${{ env.INFRA_DIR }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Terraform Init
         run: terraform init
