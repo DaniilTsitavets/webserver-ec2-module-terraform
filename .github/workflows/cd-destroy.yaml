@@ -2,6 +2,15 @@ name: CD destroy infra
 
 on:
   workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environments'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
 
 env:
   INFRA_DIR: infrastructure
@@ -31,5 +40,5 @@ jobs:
         working-directory: ${{ env.INFRA_DIR }}
 
       - name: Terraform destroy
-        run: terraform destroy -auto-approve
+        run: terraform destroy -auto-approve -var-file="${{ inputs.env }}.tfvars"
         working-directory: ${{ env.INFRA_DIR }}

@@ -2,6 +2,15 @@ name: CD apply infra
 
 on:
   workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environments'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
 
 env:
   INFRA_DIR: infrastructure
@@ -32,7 +41,7 @@ jobs:
         working-directory: ${{ env.INFRA_DIR }}
 
       - name: Terraform apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var-file="${{ inputs.env }}.tfvars"
         working-directory: ${{ env.INFRA_DIR }}
 
       - name: Install Go
@@ -41,5 +50,6 @@ jobs:
           go-version: '1.23.11'
 
       - name: Run terratest
+        if: ${{ inputs.env == 'dev' }}
         run: go test -v .
         working-directory: ${{ env.TESTS_DIR }}
