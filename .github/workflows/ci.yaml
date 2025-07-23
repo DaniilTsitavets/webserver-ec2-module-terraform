@@ -12,9 +12,15 @@ env:
 jobs:
   test-terraform:
     name: Terraform Validate
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
 
     steps:
+      - name: Print runner info
+        run: |
+          echo "Runner name: $RUNNER_NAME"
+          echo "Runner OS: $RUNNER_OS"
+          echo "Runner arch: $RUNNER_ARCH"
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
