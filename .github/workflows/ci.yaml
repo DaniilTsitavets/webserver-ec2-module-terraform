@@ -6,7 +6,7 @@ on:
   pull_request:
 
 env:
-  INFRA_DIR: infrastructure
+  INFRA_DIR: ${{ github.workspace }}/infrastructure
   AWS_REGION: eu-north-1
 
 jobs:
